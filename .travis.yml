@@ -1,9 +1,0 @@
-language: racket
-
-sudo: required
-
-before_install:
-    - sudo apt-get install racket sqlite3 -qq
-
-script:
-    - make rackunit
