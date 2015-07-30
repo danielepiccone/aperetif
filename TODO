@@ -1,0 +1,6 @@
+
+Attach prefixes to namespace modules
+(08:18:34 PM) vraid: e.g (require (prefix-in tcp: racket/tcp))
+
+The orm is really badly designed but here for prototyping
+need to think it up again to fit sql logic
