@@ -13,7 +13,7 @@
 (define
   db-path (build-path base-path db-name))
 
-(displayln (~a "orm using sqlite in " (~a db-path db-name)))
+(displayln (~a "orm using sqlite in " db-path))
 
 (define sqlc
   (sqlite3-connect
