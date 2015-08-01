@@ -5,7 +5,7 @@
 (provide (all-defined-out))
 
 (define
-  base-path "/home/daniele/Documents/dev/racket/aperetif/")
+  base-path (find-system-path 'orig-dir))
 
 (define
   db-name "sqlite/database.sqlite3")

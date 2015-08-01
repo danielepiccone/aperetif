@@ -4,7 +4,6 @@ sudo: required
 
 env:
  - RACKET_VERSION=6.1
- - RACKET_VERSION=HEAD
 
 before_install:
 - git clone https://github.com/dpiccone/travis-racket.git
