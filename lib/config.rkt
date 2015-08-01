@@ -6,7 +6,7 @@
   server-timeout 30)
 
 (define
-  base-path "/home/daniele/Documents/dev/racket/")
+  base-path (find-system-path 'orig-dir))
 
 (displayln (~a "started on " (system-type) " in " base-path))
 

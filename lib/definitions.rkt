@@ -2,9 +2,11 @@
 
 (require "server.rkt")
 (require "handler.rkt")
+(require (prefix-in middleware: "middleware.rkt"))
 
 (provide (all-from-out "server.rkt"))
 (provide (all-from-out "handler.rkt"))
+(provide (all-from-out "middleware.rkt"))
 
 
 ;; Provide shorthand method as well

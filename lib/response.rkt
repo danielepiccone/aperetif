@@ -8,6 +8,7 @@
 
 (provide response%)
 
+; Move to util
 (define get-rfc2822-date
   (parameterize
     ([date-display-format 'rfc2822]) (date->string (current-date) #t)))
@@ -47,6 +48,18 @@
       (send-headers code)
       (define data (hash 'Status (~a (code->message code))))
       (display (jsexpr->string data) out))
+
+    (define/public (send-file filepath [code 200])
+      (define fport (open-input-file filepath))
+      (send-headers code)
+      (define (port-drain in-port fn)
+        (let ([chunk (read-string 10 in-port)])
+          (unless (eof-object? chunk)
+          (fn chunk)
+          (port-drain in-port fn)))
+        )
+
+      (port-drain fport (lambda (chunk) (display chunk out))))
 
     (field
       [headers current-headers])

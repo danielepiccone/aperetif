@@ -37,11 +37,26 @@
   (new-path 'set 'bufferdata "[1,2,3,4,5]")
   (send res send-json (new-path 'get)))
 
+
+(define ctrl-file
+  (lambda (req res)
+    (send res send-file "./public/sample.html")))
+
 (route
   'GET
   "/whoami"
   (lambda (req res)
     (send res send-json '#hash((whoareyou: . "imfine")))))
+
+(route
+  'GET
+  "/static/:file"
+  (use middleware:static))
+
+(route
+  'GET
+  "/somefile"
+  ctrl-file)
 
 (route
   'GET

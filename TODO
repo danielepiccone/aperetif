@@ -4,3 +4,6 @@ Attach prefixes to namespace modules
 
 The orm is really badly designed but here for prototyping
 need to think it up again to fit sql logic
+
+Replace accessors to req res with proper macros
+eg: (response/json ...) (response/raw ...) (response/file ...)

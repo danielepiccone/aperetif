@@ -20,7 +20,7 @@
           (findf (lambda (it) (equal? header (car it))) all-headers)
           (cons #f #f))))
 
-    ;; here the order matters as were consuming a port
+    ;; Here the order matters as were consuming a port
 
     ; Fetch the request line
     (define request-line

@@ -7,7 +7,7 @@
   "response.rkt"
   "errors.rkt")
 
-(provide handle route)
+(provide handle route use)
 
 (define dispatch-tables
   (hash
@@ -36,7 +36,13 @@
         ((lambda (req res) (send res send-error 404)) req res))
     ))
 
+;; Define a route
 (define (route verb route-path handler)
   (hash-set! (hash-ref dispatch-tables verb) route-path handler))
+
+;; Apply a transform to the request/response before sending
+(define (use fn-middleware [fn-handler void])
+  (lambda (req res)
+    (fn-middleware req res fn-handler)))
 
 
