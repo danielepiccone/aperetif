@@ -1,4 +1,4 @@
-# Apéritif
+# Apéritif [![Build Status](https://travis-ci.org/dpiccone/aperetif.svg?branch=master)](https://travis-ci.org/dpiccone/aperetif)
 
 Apéritifs and digestifs (/əˈpɛrɨtiːf/ and /diːʒɛˈstiːf/) are drinks, typically alcoholic, that are normally served before (apéritif) or after (digestif) a meal.
 

@@ -1,7 +1,5 @@
 #lang racket
 
-(require db)
-
 (provide (all-defined-out))
 
 (define
