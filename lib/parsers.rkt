@@ -1,10 +1,10 @@
 #lang racket
 
+(require
+  (prefix-in util: "util.rkt"))
+
 (provide (all-defined-out))
 
-; util
-(define (strip-other-slashes it)
-  (regexp-replace* #rx"/+" it "/"))
 
 (define (parse-query-parameters data)
   (define parameters (make-hash))
@@ -29,7 +29,7 @@
   (hash
     'verb (string->symbol req-verb)
     'line req-line
-    'path (strip-other-slashes req-location)
+    'path (util:strip-other-slashes req-location)
     'parameters (parse-query-parameters req-query-params)))
 
 

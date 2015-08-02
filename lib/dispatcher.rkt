@@ -2,9 +2,7 @@
 
 (require net/url)
 
-; url-matcher is provided only for the tests
-
-(provide dispatch url-matcher)
+(provide dispatch url-matcher url-parameters)
 
 (define (url-matcher location dispatch-table)
   (filter
@@ -65,7 +63,8 @@
 
     ; Extract parameters
     (when matching-url
-      (set-field! params req (url-parameters location matching-url)))
+      (set-field! params req (url-parameters location matching-url))
+      (set-field! route req matching-url))
 
     ; Find a handler based on the path's first element:
     (define handler (hash-ref dispatch-table matching-url #f))

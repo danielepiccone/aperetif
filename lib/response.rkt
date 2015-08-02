@@ -15,7 +15,7 @@
 
 (define response%
   (class object%
-    (init out-port)
+    (init-field out-port)
     (super-new)
 
     (define out out-port)
@@ -27,6 +27,9 @@
     (hash-set! current-headers 'Content-type "text/html")
     (hash-set! current-headers 'Accept "*/*")
     (hash-set! current-headers 'Date (~a get-rfc2822-date " GMT"))
+
+    (define/public (set-header key value)
+      (hash-set! current-headers key value))
 
     (define/public (send-headers [code 200])
       (display (~a "HTTP/1.0 " code " " (code->message code)"\r\n") out)

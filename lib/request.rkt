@@ -9,7 +9,7 @@
 
 (define request%
   (class object%
-    (init in-port)
+    (init-field in-port)
     (super-new)
     (define in in-port)
 
@@ -43,7 +43,11 @@
             (read-bytes size in)))))
 
     (init-field
+      ;; Request parameters populated by the parsers
       [params (make-immutable-hash)]
+      ;; The route this request has been dispatched to
+      [route ""]
+      ;; The request object
       [line (hash-ref request-line 'line)]
       [verb (hash-ref request-line 'verb)]
       [path (hash-ref request-line 'path)]

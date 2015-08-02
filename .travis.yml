@@ -14,6 +14,6 @@ install:
 before_script:
 
 script:
- - /usr/racket/bin/raco test unit/
+    - /usr/racket/bin/raco test --direct --table unit/
 
 after_script:

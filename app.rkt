@@ -50,7 +50,7 @@
 
 (route
   'GET
-  "/static/:file"
+  "/static"
   (use middleware:static))
 
 (route
