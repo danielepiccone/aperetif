@@ -2,7 +2,7 @@
 
 Apéritifs and digestifs (/əˈpɛrɨtiːf/ and /diːʒɛˈstiːf/) are drinks, typically alcoholic, that are normally served before (apéritif) or after (digestif) a meal.
 
-This instead is a framework to make easy and powerful web applications in **Racket**
+This instead is a micro-framework to make easy and fast web applications in **Racket**, heavily inspired by Express and Sinatra
 
 ### Howto
 
