@@ -1,2 +1,4 @@
-#lang info
+#lang setup/infotab
+
 (define collection "aperetif")
+(define deps '("base" "net" "json" "racket"))
