@@ -8,7 +8,6 @@
 (provide (all-from-out "handler.rkt"))
 (provide (all-from-out "middleware.rkt"))
 
-
 ;; Provide shorthand method as well
 
 (define (get path handler)
