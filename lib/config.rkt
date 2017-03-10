@@ -6,7 +6,7 @@
   server-timeout 30)
 
 (define
-  base-path (find-system-path 'orig-dir))
+  base-path (collection-path "aperetif"))
 
 (define
   http-pub (build-path base-path "public"))
