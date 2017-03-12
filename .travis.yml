@@ -11,5 +11,5 @@ before_install:
   - export PATH="${RACKET_DIR}/bin:${PATH}"
 
 script:
-	- /usr/racket/bin/raco pkg install --force -n aperetif -t dir lib/
-	- /usr/racket/bin/raco test --drdr .
+  - /usr/racket/bin/raco pkg install --force -n aperetif -t dir lib/
+  - /usr/racket/bin/raco test --drdr .
