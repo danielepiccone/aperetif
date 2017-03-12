@@ -6,14 +6,9 @@ env:
  - RACKET_VERSION=6.1
 
 before_install:
-- git clone https://github.com/dpiccone/travis-racket.git
-- cat travis-racket/install-racket.sh | bash
-
-install:
-
-before_script:
+  - git clone https://github.com/greghendershott/travis-racket.git
+  - cat travis-racket/install-racket.sh | bash
+  - export PATH="${RACKET_DIR}/bin:${PATH}"
 
 script:
-    - /usr/racket/bin/raco test --direct --table unit/
-
-after_script:
+  - /usr/racket/bin/raco test --drdr .
