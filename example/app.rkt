@@ -5,7 +5,7 @@
 ; don't run this file for testing:
 (module test racket/base)
 
-(require "./lib/main.rkt")
+(require "../lib/main.rkt")
 
 ;; Define some controller here
 

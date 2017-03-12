@@ -11,4 +11,4 @@ before_install:
   - export PATH="${RACKET_DIR}/bin:${PATH}"
 
 script:
-  - /usr/racket/bin/raco test --direct --table unit/
+  - make install && make test

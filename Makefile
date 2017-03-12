@@ -1,5 +1,12 @@
-all:
+install:
+	raco pkg install --force -n aperetif -t dir lib/
 
-.PHONY: test
+uninstall:
+	raco pkg remove aperetif
+
 test:
-	raco test --direct --table unit/
+	raco test --drdr .
+
+example:
+	racket example/app.rkt
+

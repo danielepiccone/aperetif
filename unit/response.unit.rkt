@@ -26,7 +26,7 @@
     "Send a raw html file"
     (define test-out (open-output-string))
     (define it (new response% [out-port test-out]))
-    (send it send-file (~a base-path "/public/sample.html"))
+    (send it send-file (build-path base-path "../public/sample.html"))
     ;(displayln (get-output-string test-out))
     (define output (get-output-string test-out))
     (check-regexp-match "text/html" output)
