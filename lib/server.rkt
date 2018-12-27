@@ -7,6 +7,7 @@
 (provide serve)
 
 (define (serve port-no)
+  (displayln (~a "started on " (system-type) " in " base-path))
   (define listener (tcp-listen port-no 5 #t))
   (displayln (~a "serving on port " port-no))
   (define (loop)
