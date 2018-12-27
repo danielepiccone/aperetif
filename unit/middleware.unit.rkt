@@ -26,7 +26,7 @@
   ; Assume this has been dispatched to /static
   ; TODO write a test in dispatcher for this field
   (set-field! route req "/static")
-  (static req res)
+  (static req res void)
   (define output (get-output-string test-out))
   (check-regexp-match "text/html" output)
   (check-regexp-match "DOCTYPE" output)
@@ -42,7 +42,7 @@
     (define req (new request% [in-port incoming-tcp]))
     (define res (new response% [out-port test-out]))
     (set-field! route req "/static")
-    (static req res)
+    (static req res void)
     (define output (get-output-string test-out))
     (check-regexp-match "image/png" output)
     (check-equal? 0 0))
