@@ -1,4 +1,6 @@
-#lang racket
+#lang racket/base
+
+(require racket/string)
 
 (provide (all-defined-out))
 
@@ -11,12 +13,9 @@
 (define
   http-pub (build-path base-path "../public"))
 
-(displayln (~a "started on " (system-type) " in " base-path))
-
 (define mime-types
   (let ([fin (open-input-file (build-path base-path "lib/config/mime.types"))])
     (define mime-types (make-hash))
-
     (define (parse-mime-types)
       (let ([line (read-line fin)])
         (unless (eof-object? line)

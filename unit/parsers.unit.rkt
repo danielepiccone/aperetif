@@ -1,9 +1,12 @@
-#lang racket
+#lang racket/base
 
-(require rackunit
-         net/url
-         "../lib/request.rkt"
-         "../lib/parsers.rkt")
+(require net/url)
+
+(require
+  "../lib/request.rkt"
+  "../lib/parsers.rkt")
+
+(require rackunit)
 
 ; Parsers take a string and return immutable hashes
 

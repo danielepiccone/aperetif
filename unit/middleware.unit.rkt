@@ -1,12 +1,15 @@
-#lang racket
+#lang racket/base
+
+(require racket/class)
 
 (require
-  rackunit
   "../lib/config.rkt"
   "../lib/request.rkt"
   "../lib/response.rkt"
   "../lib/dispatcher.rkt"
   "../lib/middleware.rkt")
+
+(require rackunit)
 
 (define
   http-pub (build-path base-path "./public"))

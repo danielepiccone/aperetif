@@ -1,8 +1,12 @@
-#lang racket
+#lang racket/base
 
-(require "logger.rkt")
-(require "config.rkt")
-(require "handler.rkt")
+(require racket/format)
+(require racket/tcp)
+
+(require
+  "logger.rkt"
+  "config.rkt"
+  "handler.rkt")
 
 (provide serve)
 
@@ -19,24 +23,7 @@
     (loop))
   (loop))
 
-;; TODO make it multithreaded
-
-;; Use this for having a listener thread
-;; (define (serve-threaded port-no)
-;;   (define main-cust (make-custodian))
-;;   (parameterize ([current-custodian main-cust])
-;;     (define listener (tcp-listen port-no 5 #t))
-;;     (define (loop)
-;;       (accept-and-handle listener)
-;;       (loop))
-;;     (thread loop))
-;;   (lambda ()
-;;     (custodian-shutdown-all main-cust)
-;;     (exit 1)))
-
-
 ;; Handle the connection in a new thread
-
 (define (accept-and-handle listener)
   (define cust (make-custodian))
   (parameterize

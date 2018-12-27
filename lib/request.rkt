@@ -1,9 +1,9 @@
-#lang racket
+#lang racket/base
 
-(require
-  json
-  net/url
-  "parsers.rkt")
+(require racket/class)
+(require net/url)
+(require json)
+(require "parsers.rkt")
 
 (provide request%)
 

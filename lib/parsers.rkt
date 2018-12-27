@@ -1,10 +1,10 @@
-#lang racket
+#lang racket/base
 
-(require
-  (prefix-in util: "util.rkt"))
+(require racket/string)
+
+(require (prefix-in util: "util.rkt"))
 
 (provide (all-defined-out))
-
 
 (define (parse-query-parameters data)
   (define parameters (make-hash))
@@ -31,7 +31,6 @@
     'line req-line
     'path (util:strip-other-slashes req-location)
     'parameters (parse-query-parameters req-query-params)))
-
 
 ; Parse the header and return a cons
 (define (parse-header header)

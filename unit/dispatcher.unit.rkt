@@ -1,6 +1,12 @@
-#lang racket
+#lang racket/base
 
-(require rackunit net/url "../lib/request.rkt" "../lib/dispatcher.rkt")
+(require racket/class)
+(require net/url)
+
+(require "../lib/request.rkt")
+(require "../lib/dispatcher.rkt")
+
+(require rackunit)
 
 (define dispatch-table
   (hash
@@ -38,6 +44,12 @@
   (check-equal? (url-matcher location dispatch-table) null)
   (check-equal? (url-matcher location dispatch-table) '())
   (check-equal? 0 0))
+
+(test-case
+  "Do not match the root if not registered"
+  (define location "/")
+  (check-equal? (url-matcher location dispatch-table) null)
+  (check-equal? (url-matcher location dispatch-table) '()))
 
 (test-case
   "Dispatch to the correct controller"

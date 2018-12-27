@@ -1,7 +1,10 @@
-#lang racket
+#lang racket/base
+
+(require racket/class)
+(require racket/format)
+(require json)
 
 (require
-  json
   "dispatcher.rkt"
   "request.rkt"
   "response.rkt"
@@ -17,7 +20,6 @@
     'DELETE (make-hash)))
 
 (define (handle in out)
-
   (define req (new request% [in-port in]))
   (define res (new response% [out-port out]))
 
@@ -29,12 +31,12 @@
     (define handler
       (dispatch req dispatch-tables))
 
+    ; if a handler has been registered
     (if handler
         ; Call handler
         (handler req res)
         ; Respond with a 404
-        ((lambda (req res) (send res send-error 404)) req res))
-    ))
+        ((lambda (req res) (send res send-error 404)) req res))))
 
 ;; Define a route
 (define (route verb route-path handler)

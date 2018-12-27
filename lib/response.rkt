@@ -1,10 +1,12 @@
-#lang racket
+#lang racket/base
 
-(require
-  json
-  net/url
-  racket/date
-  "errors.rkt")
+(require racket/date)
+(require racket/class)
+(require racket/format)
+(require net/url)
+(require json)
+
+(require "errors.rkt")
 
 (provide response%)
 

@@ -1,8 +1,11 @@
-#lang racket
+#lang racket/base
 
-(require rackunit)
+(require racket/class)
+
 (require "../lib/response.rkt")
 (require (prefix-in config: "../lib/config.rkt"))
+
+(require rackunit)
 
 (test-case
   "Init a new response"

@@ -1,27 +1,36 @@
-#lang racket
+#lang racket/base
 
+(require racket/string)
+(require racket/class)
 (require net/url)
 
 (provide dispatch url-matcher url-parameters)
 
+; Match an url with the ones registered in the dispatch table
 (define (url-matcher location dispatch-table)
   (filter
     (lambda (url)
       (define req-tokens (string-split location "/"))
       (define cur-tokens (string-split url "/"))
 
-      (define (match-tokens a b)
+      (define (match-url-tokens a b)
         (if (or (null? a) (null? b))
           #t
+          ; if the next fragment matches or it is a parameter
           (if (or (equal? (car a) (car b))
                   (equal? (string-ref (car b) 0) #\:))
-            (match-tokens (cdr a) (cdr b))
+            ; process the rest
+            (match-url-tokens (cdr a) (cdr b))
             #f)))
 
-      (match-tokens req-tokens cur-tokens))
+      ; Match only if the number of fragments is the same
+      (if (equal? (length req-tokens) (length cur-tokens))
+        (match-url-tokens req-tokens cur-tokens)
+        #f))
 
     (hash-keys dispatch-table)))
 
+; Extrct the parameters from an url given a pattern
 (define (url-parameters url pat)
   (let ([req-tokens (string-split url "/")]
         [pat-tokens (string-split pat "/")])

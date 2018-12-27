@@ -8,7 +8,6 @@
 (require "../lib/main.rkt")
 (require (prefix-in config: "../lib/config.rkt"))
 
-
 ;; Define some controller here
 
 (define (ctrl-json req res)

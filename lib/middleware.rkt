@@ -1,9 +1,13 @@
-#lang racket
+#lang racket/base
 
-(require
-  net/mime
-  (prefix-in config: "config.rkt")
-  (prefix-in util: "util.rkt"))
+(require racket/class)
+(require racket/port)
+(require racket/string)
+(require racket/list)
+(require net/mime)
+
+(require (prefix-in config: "config.rkt"))
+(require (prefix-in util: "util.rkt"))
 
 (provide (all-defined-out))
 
@@ -11,6 +15,7 @@
   (lambda (req res [next void])
     (let ([req-route (get-field route req)]
           [req-path (get-field path req)])
+
     ; This is the quicker way to get a relative path
     ; provided the dispatcher is formatting them correctly
     ; / at the beginning no / at the end
