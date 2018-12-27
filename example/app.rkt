@@ -6,6 +6,8 @@
 (module test racket/base)
 
 (require "../lib/main.rkt")
+(require (prefix-in config: "../lib/config.rkt"))
+
 
 ;; Define some controller here
 
@@ -27,7 +29,7 @@
 (route
   'GET
   "/static"
-  (use middleware:static))
+  (use (static-middleware config:http-pub)))
 
 (route
   'GET

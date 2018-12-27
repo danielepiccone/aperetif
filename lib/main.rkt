@@ -2,7 +2,7 @@
 
 (require "server.rkt")
 (require "handler.rkt")
-(require (prefix-in middleware: "middleware.rkt"))
+(require "middleware.rkt")
 
 (provide (all-from-out "server.rkt"))
 (provide (all-from-out "handler.rkt"))
