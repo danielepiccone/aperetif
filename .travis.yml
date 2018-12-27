@@ -3,7 +3,7 @@ language: racket
 sudo: required
 
 env:
- - RACKET_VERSION=6.1
+ - RACKET_VERSION=7.0
 
 before_install:
   - git clone https://github.com/greghendershott/travis-racket.git
