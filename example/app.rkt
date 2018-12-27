@@ -2,11 +2,13 @@
 
 #lang racket
 
+(require racket/system)
+(require racket/string)
+
 ; don't run this file for testing:
 (module test racket/base)
 
 (require "../lib/main.rkt")
-(require (prefix-in config: "../lib/config.rkt"))
 
 ;; Define some controller here
 
@@ -23,12 +25,13 @@
   'GET
   "/whoami"
   (lambda (req res)
-    (send res send-json '#hash((whoareyou: . "imfine")))))
+    (let ([me (string-trim (with-output-to-string (lambda () (system "whoami"))))])
+      (send res send-json (hash 'whoami  me)))))
 
 (route
   'GET
   "/static"
-  (use (static-middleware config:http-pub)))
+  (use (static-middleware "./public")))
 
 (route
   'GET
