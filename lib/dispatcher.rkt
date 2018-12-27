@@ -53,6 +53,7 @@
 
     parameters))
 
+; Dispatches a request against the dispatch tables
 (define (dispatch req dispatch-tables)
   (let ([verb (get-field verb req)]
         [location (get-field path req)]

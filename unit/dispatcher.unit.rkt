@@ -3,8 +3,9 @@
 (require racket/class)
 (require net/url)
 
-(require "../lib/request.rkt")
-(require "../lib/dispatcher.rkt")
+(require
+  "../lib/request.rkt"
+  "../lib/dispatcher.rkt")
 
 (require rackunit)
 
@@ -54,7 +55,7 @@
 (test-case
   "Dispatch to the correct controller"
   (define incoming-tcp
-    (open-input-bytes #"GET /hello HTTP/1.1\r\n\r\n\r\n"))
+    (open-input-bytes #"GET /hello HTTP/1.1\r\n\r\n"))
   (define req (new request% [in-port incoming-tcp]))
   (check-equal? (get-field path req) "/hello")
   (define handler (dispatch req dispatch-tables))
@@ -65,7 +66,7 @@
 (test-case
   "When nothing is found in the dispatch table"
   (define incoming-tcp
-    (open-input-bytes #"GET /yabbayabba HTTP/1.1\r\n\r\n\r\n"))
+    (open-input-bytes #"GET /yabbayabba HTTP/1.1\r\n\r\n"))
   (define req (new request% [in-port incoming-tcp]))
   (check-equal? (get-field path req) "/yabbayabba")
   (define handler (dispatch req dispatch-tables))
@@ -75,7 +76,7 @@
 (test-case
   "Dispatch also parameters"
   (define incoming-tcp
-    (open-input-bytes #"GET /foo/123/bar/cisco HTTP/1.1\r\n\r\n\r\n"))
+    (open-input-bytes #"GET /foo/123/bar/cisco HTTP/1.1\r\n\r\n"))
   (define req (new request% [in-port incoming-tcp]))
   (define handler (dispatch req dispatch-tables))
   (define params (get-field params req))
@@ -86,7 +87,7 @@
 (test-case
   "Should not match if requesting a shorter route"
   (define incoming-tcp
-    (open-input-bytes #"GET /foo HTTP/1.1\r\n\r\n\r\n"))
+    (open-input-bytes #"GET /foo HTTP/1.1\r\n\r\n"))
   (define req (new request% [in-port incoming-tcp]))
   (define handler (dispatch req dispatch-tables))
   (define params (get-field params req))

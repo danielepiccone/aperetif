@@ -14,9 +14,12 @@
 
 (define dispatch-tables
   (hash
+    'HEAD (make-hash)
+    'OPTIONS (make-hash)
     'GET (make-hash)
     'POST (make-hash)
     'PUT (make-hash)
+    'PATCH (make-hash)
     'DELETE (make-hash)))
 
 (define (handle in out)
