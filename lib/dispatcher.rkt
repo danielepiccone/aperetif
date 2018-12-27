@@ -18,7 +18,7 @@
 
 ; Get an url from the dispatch table matching the request
 (define (url-matcher location dispatch-table)
-  (filter
+  (findf
     (lambda (url)
       (let ([req-tokens (string-split location "/")]
             [route-tokens (string-split url "/")])
@@ -65,11 +65,7 @@
     ; Extract the path part:
     (define path (map path/param-path (url-path url)))
 
-    (define matching-url
-      (let ([url (url-matcher location dispatch-table)])
-        (if (null? url)
-          #f
-          (car url))))
+    (define matching-url (url-matcher location dispatch-table))
 
     ; Extract parameters
     (when matching-url

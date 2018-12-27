@@ -24,33 +24,30 @@
 (test-case
   "Match hello route"
   (define location "/hello")
-  (check-equal? (url-matcher location dispatch-table) '("hello"))
+  (check-equal? (url-matcher location dispatch-table) "hello")
   (check-equal? 0 0))
 
 (test-case
   "Match route with params"
   (define location "/this/2340")
-  (check-equal? (url-matcher location dispatch-table) '("this/:param"))
+  (check-equal? (url-matcher location dispatch-table) "this/:param")
   (check-equal? 0 0))
 
 (test-case
   "Match route with more params"
   (define location "/that/1234/more")
-  (check-equal? (url-matcher location dispatch-table) '("that/:param/more"))
+  (check-equal? (url-matcher location dispatch-table) "that/:param/more")
   (check-equal? 0 0))
 
 (test-case
   "Do not match any route"
   (define location "/nothing")
-  (check-equal? (url-matcher location dispatch-table) null)
-  (check-equal? (url-matcher location dispatch-table) '())
-  (check-equal? 0 0))
+  (check-equal? (url-matcher location dispatch-table) #f))
 
 (test-case
   "Do not match the root if not registered"
   (define location "/")
-  (check-equal? (url-matcher location dispatch-table) null)
-  (check-equal? (url-matcher location dispatch-table) '()))
+  (check-equal? (url-matcher location dispatch-table) #f))
 
 (test-case
   "Dispatch to the correct controller"
