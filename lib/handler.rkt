@@ -1,7 +1,6 @@
 #lang racket/base
 
 (require racket/class)
-(require racket/format)
 (require json)
 
 (require
@@ -29,7 +28,7 @@
   (when (get-field line req)
 
     ; Log
-    (log-debug (~a (get-field line req)))
+    (log-debug (get-field line req))
 
     (define handler
       (dispatch req dispatch-tables))
