@@ -5,7 +5,7 @@ uninstall:
 	raco pkg remove aperetif
 
 test:
-	raco test --drdr .
+	raco test .
 
 example:
 	racket example/app.rkt
