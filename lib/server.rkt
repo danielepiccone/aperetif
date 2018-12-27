@@ -10,6 +10,7 @@
 
 (provide serve)
 
+; Start the server loop
 (define (serve port-no)
   (displayln (~a "started on " (system-type) " in " base-path))
   (define listener (tcp-listen port-no 5 #t))
@@ -23,7 +24,7 @@
     (loop))
   (loop))
 
-;; Handle the connection in a new thread
+; Handle the connection in a new thread
 (define (accept-and-handle listener)
   (define cust (make-custodian))
   (parameterize

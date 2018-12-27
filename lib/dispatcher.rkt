@@ -6,28 +6,28 @@
 
 (provide dispatch url-matcher url-parameters)
 
-; Match an url with the ones registered in the dispatch table
+(define (match-url-tokens req-tokens route-tokens)
+  (if (or (null? req-tokens) (null? route-tokens))
+    #t
+    ; if the next fragment matches or it is a parameter
+    (if (or (equal? (car req-tokens) (car route-tokens))
+            (equal? (string-ref (car route-tokens) 0) #\:))
+      ; process the rest
+      (match-url-tokens (cdr req-tokens) (cdr route-tokens))
+      #f)))
+
+; Get an url from the dispatch table matching the request
 (define (url-matcher location dispatch-table)
   (filter
     (lambda (url)
-      (define req-tokens (string-split location "/"))
-      (define cur-tokens (string-split url "/"))
+      (let ([req-tokens (string-split location "/")]
+            [route-tokens (string-split url "/")])
 
-      (define (match-url-tokens a b)
-        (if (or (null? a) (null? b))
-          #t
-          ; if the next fragment matches or it is a parameter
-          (if (or (equal? (car a) (car b))
-                  (equal? (string-ref (car b) 0) #\:))
-            ; process the rest
-            (match-url-tokens (cdr a) (cdr b))
-            #f)))
-
-      ; Match only if the number of fragments is the same
-      (if (equal? (length req-tokens) (length cur-tokens))
-        (match-url-tokens req-tokens cur-tokens)
-        #f))
-
+        ; when the request has less fragments than the route it is never matched
+        (if (> (length route-tokens) (length req-tokens))
+          #f
+          (match-url-tokens req-tokens route-tokens))
+        ))
     (hash-keys dispatch-table)))
 
 ; Extrct the parameters from an url given a pattern

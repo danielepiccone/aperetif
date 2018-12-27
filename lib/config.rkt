@@ -8,6 +8,8 @@
   server-timeout 30)
 
 (define
+  ; TODO deprecated
+  ; http://docs.racket-lang.org/reference/collects.html?q=collection-path#%28def._%28%28lib._racket%2Fprivate%2Fbase..rkt%29._collection-path%29%29
   base-path (collection-path "aperetif"))
 
 (define
