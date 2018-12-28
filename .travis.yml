@@ -12,4 +12,4 @@ before_install:
 
 script:
   - /usr/racket/bin/raco pkg install --force -n aperetif -t dir lib/
-  - /usr/racket/bin/raco test .
+  - /usr/racket/bin/raco test unit
